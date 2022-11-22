@@ -8,7 +8,7 @@ print snoofer
 ```
 <h2 align="Left"> Description</h2>
 
-Using rockyou.txt or any you want to add to target folder. Filter out uniqe passwords 8 characters and up with at least one of each a special character and number. Then search the targeted directory of your input of all the txt files and word docx to find those passwords in.
+Using rockyou.txt or any .txt files with passwords. Using those and filtering them down to uniqe passwords with 8 characters and up with at least one of each a special character and a number. To then search a targeted directory of all the txt and word docx files to find those vulnerable passwords in them.
 <br />
 <br />
 <br />
