@@ -9,13 +9,14 @@ filepaths = []
 p = []
 text = []
 textclean =[]
+csvtext = []
 
 class functions():
 
     #makes the badpassword list
     def builddb ():
       #path to all the password files you want to use
-        path = (r"C:\Leakedpwds")
+        path = (r"C:\leakedpasswords")
         for root, dirs, files in os.walk(path):
            path = root.split(os.sep)
            for file in files:
@@ -44,9 +45,11 @@ class functions():
         for root, dirs, files in os.walk(path):
             for file in files:
                 metafilter = ".meta"
-                if ".txt" in file or ".docx" in file and metafilter not in file:
-                    f = str(os.path.join(root, file))
-                    functions.filetype(f)
+                extentions = ['.txt', '.docx', 'config', '.cfg', '.csv']
+                for ext in extentions:
+                    if ext in file and metafilter not in file:
+                        f = str(os.path.join(root, file))
+                        functions.filetype(f)
                     
                 else:
                     pass
@@ -59,36 +62,46 @@ class functions():
         for words in doc.paragraphs:
             text.append(words.text)
 
-
+    # read and cleas up .txt/.config files
     def txtclean(file):
         with open(file, 'r') as t:
             tread = t.readlines()
             for line in tread:
                 textclean.append(line.strip('\n'))
 
+    def csvclean(file):
+        with open(file, 'r') as t:
+            tread = t.readlines()
+            for line in tread:
+                csvtext.append(line.strip('\n'))
+        
 
 
     #  functions based on file types
     def filetype(data):
-        if ".txt" in data:
-            functions.txtclean(data)
-            i = 0
-            limit = (len(textclean) * len(badpassworddb))
-            while i <= limit:
-                for pwd in badpassworddb:
-                    for line in textclean:
-                        var = re.escape(str(pwd))
-                        if re.findall(var, line, flags=re.IGNORECASE):
-                            print("found " + str(pwd) + " in")
-                            print(data)
-                            p.append("\n" + str(pwd) + " --------------" + "\n" + data)
-                            i += 1
-                        else:
-                            i += 1
-                            
-            if i >= limit:
-                textclean.clear()
+        if ".txt" in data or ".config" in data or ".cfg" in data:
+            try:
+                functions.txtclean(data)
+                i = 0
+                limit = (len(textclean) * len(badpassworddb))
+                while i <= limit:
+                    for pwd in badpassworddb:
+                        for line in textclean:
+                            var = re.escape(str(pwd))
+                            if re.findall(var, line, flags=re.IGNORECASE):
+                                print("found " + str(pwd) + " in")
+                                print(data)
+                                p.append("\n" + str(pwd) + " --------------" + "\n" + data)
+                                i += 1
+                            else:
+                                i += 1
 
+                if i >= limit:
+                    textclean.clear()
+            except:
+               print("Previous file was corrupted or didn't exist - new file was created.")           
+
+                        
         if ".docx" in data:
             try:
                 functions.docxs(data)
@@ -114,11 +127,30 @@ class functions():
 
                         
 
-        if ".xlsx" in data:
-            pass
-            #work in progress
-        else:
-            pass
+        if ".csv" in data:
+            try:
+                functions.csvclean(data)
+                i = 0
+                limit = (len(csvtext)*len(badpassworddb))
+                while i <= limit:
+                    for pwd in badpassworddb:
+                        for line in csvtext:
+                            var = re.escape(str(pwd))
+                            if re.findall(var, line, flags=re.IGNORECASE):
+                                print("found " + str(pwd) + " in")
+                                print(data)
+                                p.append("\n" + str(pwd) + " --------------" + "\n" + data)
+                                i += 1
+                            else:
+                                i += 1
+
+                if i >= limit:
+                    csvtext.clear()
+            except:
+               print("Previous file was corrupted or didn't exist - new file was created.")           
+
+                        
+
 
     def exporting ():
         with open("output.csv", "w") as file:
