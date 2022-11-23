@@ -90,21 +90,27 @@ class functions():
                 textclean.clear()
 
         if ".docx" in data:
-            functions.docxs(data)
-            i = 0
-            limit = (len(text)*len(badpassworddb))
-            while i <= limit:
-                for pwd in badpassworddb:
-                    #print(pwd)
-                    for line in text:
-                        var = re.escape(str(pwd))
-                        if re.findall(var, line, flags=re.IGNORECASE):
-                            print("found " + str(pwd) + " in")
-                            print(data)
-                            p.append("\n" + str(pwd) + " --------------" + "\n" + data)
-                            i += 1
-                        else:
-                            i += 1
+            try:
+                functions.docxs(data)
+                i = 0
+                limit = (len(text)*len(badpassworddb))
+                while i <= limit:
+                    for pwd in badpassworddb:
+                        #print(pwd)
+                        for line in text:
+                            var = re.escape(str(pwd))
+                            if re.findall(var, line, flags=re.IGNORECASE):
+                                print("found " + str(pwd) + " in")
+                                print(data)
+                                p.append("\n" + str(pwd) + " --------------" + "\n" + data)
+                                i += 1
+                            else:
+                                i += 1
+
+                if i >= limit:
+                    text.clear()
+            except:
+                print("Previous file was corrupted or didn't exist - new file was created.")           
 
             if i >= limit:
                 text.clear()
