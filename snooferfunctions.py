@@ -112,8 +112,6 @@ class functions():
             except:
                 print("Previous file was corrupted or didn't exist - new file was created.")           
 
-            if i >= limit:
-                text.clear()
                         
 
         if ".xlsx" in data:
