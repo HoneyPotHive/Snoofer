@@ -99,7 +99,7 @@ class functions():
                 if i >= limit:
                     textclean.clear()
             except:
-               print("Previous file was corrupted or didn't exist - new file was created.")           
+               print("Previous file was corrupted or didn't exist - Skipping")           
 
                         
         if ".docx" in data:
@@ -123,7 +123,7 @@ class functions():
                 if i >= limit:
                     text.clear()
             except:
-                print("Previous file was corrupted or didn't exist - new file was created.")           
+                print("Previous file was corrupted or didn't exist - Skipping")           
 
                         
 
@@ -147,7 +147,7 @@ class functions():
                 if i >= limit:
                     csvtext.clear()
             except:
-               print("Previous file was corrupted or didn't exist - new file was created.")           
+               print("Previous file was corrupted or didn't exist - Skipping")           
 
                         
 
