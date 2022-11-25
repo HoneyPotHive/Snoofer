@@ -8,8 +8,7 @@ print snoofer
 ```
 <h2 align="Left"> Description</h2>
 
-Using rockyou.txt or any .txt files with passwords. Using those and filtering them down to uniqe passwords with 8 characters and up with at least one of each a special character and a number. To then search a targeted directory of all the txt and word docx files to find those vulnerable passwords in them.
-<br />
+Using rockyou.txt or any .txt files with passwords. Using those and filtering them down to uniqe passwords with 8 characters and up with at least one of each a special character and a number. To then search a targeted directory of all the txt and word docx files to find those vulnerable passwords in them. The larger the directory the longer the scan.
 <br />
 <br />
 #### Current File support
