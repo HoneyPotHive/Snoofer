@@ -14,7 +14,7 @@ Using rockyou.txt or any .txt files with passwords. Using those and filtering th
 <br />
 #### Current File support
 ```
-.txt, .docx
+.txt, .docx, .cfg, .config, .csv
 ```
 <br />
 
@@ -22,8 +22,15 @@ Using rockyou.txt or any .txt files with passwords. Using those and filtering th
 #### Requirements
 -------------------
 - pip install -r requirements.txt
-- Python 3.9
+- Python 3.9 - 3.10.2
 <br />
+
+#### Setup
+-----------------------------
+`Subjected to change as new releases come out to optimize these steps`
+1. Open snooferfunctions.py and change the directory **line 19 path = (r"C:\leakedpasswords")** This is where you want to throw all your .txt files with passwords you want to search for like rockyou.txt
+
+2. Open Snoofer.py and change the target location where you want to seach **line 4 path2 = (r"C:\Test")** This is where you want it to do the scan.
 
 #### Known Issues
 -------------------
