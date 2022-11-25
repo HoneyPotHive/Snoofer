@@ -3,7 +3,10 @@ import re
 import docx
 import os
 
+# add your own words here that are not unique before running the scan
 badpassworddb = []
+
+
 baddbtxtfiles =[]
 filepaths = []
 p = []
